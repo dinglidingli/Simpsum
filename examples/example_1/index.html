@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simpsum - Example 1</title>
+  </head>
+  <body>
+    <h1>{{ simpsum(10) }}</h1>
+
+    <p>{{ simpsum }}</p>
+    <p>Hello, this is not a placeholder.</p>
+
+    <h2>{{ simpsum }}</h2>
+
+    <div>
+      <p>{{ simpsum(5) }}</p>
+      <p>{{ simpsum }}</p>
+    </div>
+
+    <script src="../../dist/simpsum.js"></script>
+    <script>
+      var simpsum = new Simpsum('../dummy_content.json');
+    </script>
+  </body>
+</html>

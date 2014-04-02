@@ -1,0 +1,24 @@
+{
+  "name": "Simpsum",
+  "version": "0.1.0",
+  "authors": [
+    "Christopher Dingli <cldingli@gmail.com>"
+  ],
+  "description": "Simple Lorem Ipsum - Easy text placeholders",
+  "main": "dist/simpsum.min.js",
+  "keywords": [
+    "lorem",
+    "ipsum",
+    "placeholder",
+    "lipsum"
+  ],
+  "license": "MIT",
+  "homepage": "http://github.com/chrisdingli/simpsum",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
