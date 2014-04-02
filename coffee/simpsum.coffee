@@ -3,8 +3,8 @@ class @Simpsum
     @dataSourceLink = dataSourceLink
 
     # Match the following formats:
-      # {{ simpsum_heading }}
-      # {{ simpsum_heading(10) }}
+      # {{ simpsum }}
+      # {{ simpsum(10) }}
       # {{ variableTag }}
       # {{ variableTag(10) }}
     @regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9]{1,}\\))?\\s{1,}\\}{2}")
