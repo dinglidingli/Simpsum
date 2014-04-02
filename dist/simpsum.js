@@ -2,8 +2,12 @@
   var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
   this.Simpsum = (function() {
-    function Simpsum(dataSourceLink) {
+    function Simpsum(dataSourceLink, variableTag) {
+      if (variableTag == null) {
+        variableTag = "simpsum";
+      }
       this.dataSourceLink = dataSourceLink;
+      this.regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9]{1,}\\))?\\s{1,}\\}{2}");
       this.allowedNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'LI'];
       this.headingNodes = this.allowedNodes.slice(0, 6);
       this.nodesToChange = [];
@@ -12,9 +16,10 @@
     }
 
     Simpsum.prototype.findAllowedNodes = function(node) {
-      var child, key, matchedValue, regex, replaceType, _ref, _ref1, _ref2, _results;
-      regex = /\{{2}\s{1,}(simpsum)(\([0-9]{1,}\))?\s{1,}\}{2}/;
-      if ((_ref = node.nodeName, __indexOf.call(this.allowedNodes, _ref) >= 0) && regex.test(node.innerHTML)) {
+      var child, key, matchedValue, replaceType, _ref, _ref1, _ref2, _results;
+      console.log(this.regex.test(node.innerHTML));
+      console.log(this.regex);
+      if ((_ref = node.nodeName, __indexOf.call(this.allowedNodes, _ref) >= 0) && this.regex.test(node.innerHTML)) {
         this.nodesToChange.push({
           element: node,
           characterLimit: 0
