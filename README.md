@@ -40,5 +40,5 @@ To set a placeholder section in your website, create a text element and include 
 You can also force your placeholders to have a maximum length. The example below will limit the placeholder to 20 characters.
 
 ```
-<p>{{ simpsum(20) }}
+<p>{{ simpsum(20) }}</p>
 ```
