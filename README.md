@@ -1,13 +1,18 @@
-# Simpsum
-## Simple Lorem Ipsum
+# Simpsum - Simple Lorem Ipsum
 
 Simpsum makes it easy to add reusable placeholder text to your development websites.
 
 This project was created as a way of adding placeholder text to be added to development sites in a consistent fashion. It also aims to solve the problem of forgetting to remove or change placeholder text before deployment by allowing developers to easily find and replace the consistent tags.
 
-### Installation
+## Installation
 
-Add the files to your server and include the script on your web page.
+Download via bower.
+
+```
+bower install simpsum
+```
+
+Include the script on your web page.
 
 ```
 <script src="simpsum.js"></script>
@@ -21,7 +26,7 @@ Next, call the script. A sample JSON file has been included in the examples fold
 </script>
 ```
 
-### Usage
+## Usage
 
 To set a placeholder section in your website, create a text element and include the `{{ simpsum }}` tag.
 
