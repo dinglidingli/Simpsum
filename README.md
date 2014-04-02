@@ -26,6 +26,8 @@ Next, call the script. A sample JSON file has been included in the examples fold
 </script>
 ```
 
+Note: If using a local `.json` file, it will need to be served via a local web server.
+
 ## Usage
 
 To set a placeholder section in your website, create a text element and include the `{{ simpsum }}` tag.
