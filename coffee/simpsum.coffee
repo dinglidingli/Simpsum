@@ -1,6 +1,13 @@
 class @Simpsum
-  constructor: (dataSourceLink) ->
+  constructor: (dataSourceLink, variableTag = "simpsum") ->
     @dataSourceLink = dataSourceLink
+
+    # Match the following formats:
+      # {{ simpsum_heading }}
+      # {{ simpsum_heading(10) }}
+      # {{ variableTag }}
+      # {{ variableTag(10) }}
+    @regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9]{1,}\\))?\\s{1,}\\}{2}")
 
     @allowedNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'LI']
     @headingNodes = @allowedNodes[0...6]
@@ -15,13 +22,8 @@ class @Simpsum
 
   # Check number of matches
   findAllowedNodes: (node) ->
-    # Match the following formats:
-      # {{ simpsum_heading }}
-      # {{ simpsum_heading(10) }}
-    regex = /\{{2}\s{1,}(simpsum)(\([0-9]{1,}\))?\s{1,}\}{2}/
-
     # If current node is a permissable node
-    if node.nodeName in @allowedNodes and regex.test node.innerHTML
+    if node.nodeName in @allowedNodes and @regex.test node.innerHTML
 
       @nodesToChange.push
         element: node

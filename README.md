@@ -42,3 +42,17 @@ You can also force your placeholders to have a maximum length. The example below
 ```
 <p>{{ simpsum(20) }}</p>
 ```
+
+You can use variable tag names by specifying the desired tag in the second parameter when calling the class:
+
+```
+<script>
+  var simpsum = new Simpsum("path_to_dummy_content.json", "text");
+</script>
+```
+
+And the tags can be called like so (in the same fashion as described above):
+
+```
+<p>{{ text }}</p>
+```

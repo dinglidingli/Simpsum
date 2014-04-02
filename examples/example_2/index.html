@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Simpsum - Example 2</title>
+  </head>
+  <body>
+    <h1>{{ text(10) }}</h1>
+
+    <p>{{ text }}</p>
+    <p>Hello, this is not a placeholder.</p>
+
+    <h2>{{ text }}</h2>
+
+    <div>
+      <p>Text will only be replaced if it matches the tag specified when calling the script:</p>
+      <p>{{ simpsum(5) }}</p>
+      <p>{{ text }}</p>
+    </div>
+
+    <script src="../../dist/simpsum.js"></script>
+    <script>
+      var simpsum = new Simpsum('../dummy_content.json', "text");
+    </script>
+  </body>
+</html>
