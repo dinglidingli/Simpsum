@@ -7,7 +7,7 @@ class @Simpsum
       # {{ simpsum(10) }}
       # {{ variableTag }}
       # {{ variableTag(10) }}
-    @regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9]{1,}\\))?\\s{1,}\\}{2}")
+    @regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9, ]{1,}\\))?\\s{1,}\\}{2}")
 
     @allowedNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'LI']
     @headingNodes = @allowedNodes[0...6]
@@ -30,9 +30,16 @@ class @Simpsum
         characterLimit: 0
 
       # Check if the developer has specified a max length for the placeholder
-      if /\([0-9]{1,}\)/.test node.innerHTML
+      if /\([0-9, ]{1,}\)/.test node.innerHTML
         matchedValue = node.innerHTML.match /\((.*?)\)/
-        @nodesToChange[@nodesToChange.length - 1].characterLimit = parseInt matchedValue[1]
+
+        if matchedValue[1].split(",").length > 0
+          range = matchedValue[1].split(",")
+          min = parseInt(range[0])
+          max = parseInt(range[1])
+          this.nodesToChange[this.nodesToChange.length - 1].characterLimit = (Math.floor(Math.random() * (max - min + 1)) + min);
+        else
+          @nodesToChange[@nodesToChange.length - 1].characterLimit = parseInt matchedValue[1]
 
       # If a heading
       if node.nodeName in @headingNodes
