@@ -43,6 +43,12 @@ You can also force your placeholders to have a maximum length. The example below
 <p>{{ simpsum(20) }}</p>
 ```
 
+Maximum lengths can also be specified as being of a range for when you want more variance in your selected content (e.g., when simulating user supplied content)
+
+```
+<p>{{ simpsum(20,30) }}</p>
+```
+
 You can use variable tag names by specifying the desired tag in the second parameter when calling the class:
 
 ```
@@ -55,4 +61,6 @@ And the tags can be called like so (in the same fashion as described above):
 
 ```
 <p>{{ text }}</p>
+<p>{{ text(10) }}</p>
+<p>{{ text(10,20) }}</p>
 ```
