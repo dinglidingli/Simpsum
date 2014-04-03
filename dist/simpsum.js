@@ -7,7 +7,7 @@
         variableTag = "simpsum";
       }
       this.dataSourceLink = dataSourceLink;
-      this.regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9]{1,}\\))?\\s{1,}\\}{2}");
+      this.regex = new RegExp("\\{{2}\\s{1,}(" + variableTag + ")(\\([0-9, ]{1,}\\))?\\s{1,}\\}{2}");
       this.allowedNodes = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'LI'];
       this.headingNodes = this.allowedNodes.slice(0, 6);
       this.nodesToChange = [];
@@ -16,17 +16,22 @@
     }
 
     Simpsum.prototype.findAllowedNodes = function(node) {
-      var child, key, matchedValue, replaceType, _ref, _ref1, _ref2, _results;
-      console.log(this.regex.test(node.innerHTML));
-      console.log(this.regex);
+      var child, key, matchedValue, max, min, range, replaceType, _ref, _ref1, _ref2, _results;
       if ((_ref = node.nodeName, __indexOf.call(this.allowedNodes, _ref) >= 0) && this.regex.test(node.innerHTML)) {
         this.nodesToChange.push({
           element: node,
           characterLimit: 0
         });
-        if (/\([0-9]{1,}\)/.test(node.innerHTML)) {
+        if (/\([0-9, ]{1,}\)/.test(node.innerHTML)) {
           matchedValue = node.innerHTML.match(/\((.*?)\)/);
-          this.nodesToChange[this.nodesToChange.length - 1].characterLimit = parseInt(matchedValue[1]);
+          if (matchedValue[1].split(",").length > 0) {
+            range = matchedValue[1].split(",");
+            min = parseInt(range[0]);
+            max = parseInt(range[1]);
+            this.nodesToChange[this.nodesToChange.length - 1].characterLimit = Math.floor(Math.random() * (max - min + 1)) + min;
+          } else {
+            this.nodesToChange[this.nodesToChange.length - 1].characterLimit = parseInt(matchedValue[1]);
+          }
         }
         if (_ref1 = node.nodeName, __indexOf.call(this.headingNodes, _ref1) >= 0) {
           replaceType = 'heading';
